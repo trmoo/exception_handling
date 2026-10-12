@@ -1,0 +1,73 @@
+# 부숴봐! 자판기 — © 2026 티쳐무 · 모든 권리 보유
+# 푸시할 때마다 시험·소스 검사·빌드 점검을 돌린다. dist 는 커밋하지 않는다.
+# ⚠ 배포는 Cloudflare Pages 가 맡는다(저장소를 연결해 두면 푸시마다 스스로 빌드해 올린다).
+#   여기서는 GitHub Pages 로 올리지 않는다 — 깨진 코드를 일찍 알려 주는 점검만 한다.
+name: check
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - name: 시험
+        run: npm test
+
+      # 시험은 탭 파일(DOM 을 만지는 곳)을 부르지 않는다.
+      # 그래서 이 단계를 빼면 탭 파일의 문법 오류가 빌드에서야 터진다. 빼지 말 것.
+      - name: 소스 전수 검사
+        run: npm run check:syntax
+
+      - run: npm run build
+
+      # ⚠ 셸 변수 이름은 반드시 ASCII 로 쓴다. 한글로 쓰면 bash 가 command not found 로 죽는다.
+      - name: 빌드 결과 점검
+        run: |
+          FILE=dist/index.html
+          test -f "$FILE" || { echo "::error::$FILE 이 없습니다"; exit 1; }
+
+          SIZE=$(wc -c < "$FILE")
+          echo "빌드 크기: ${SIZE} 바이트"
+          if [ "$SIZE" -lt 100000 ]; then
+            echo "::error::빌드 결과가 너무 작습니다 (${SIZE} 바이트). 자원이 안 들어갔을 수 있습니다."
+            exit 1
+          fi
+
+          # 저작권 표시
+          TRMOO=$(grep -o 티쳐무 "$FILE" | wc -l)
+          echo "저작권 표시: 티쳐무 ${TRMOO}곳"
+          if [ "$TRMOO" -lt 3 ]; then
+            echo "::error::저작권 표시가 사라졌습니다. esbuild.legalComments 가 'inline' 인지 보세요."
+            exit 1
+          fi
+
+          # /*! 배너가 압축에서 살아남았는지
+          grep -q '/\*!' "$FILE" || { echo "::error::/*! 배너가 지워졌습니다"; exit 1; }
+
+          # 화면 푸터가 살아 있는지 (학생·교사가 실제로 보는 곳)
+          grep -q '학교 수업 목적으로만' "$FILE" || { echo "::error::화면 푸터가 없습니다"; exit 1; }
+
+          # 바깥 자원을 부르면 인터넷 없는 교실에서 깨진다
+          # (w3.org 는 SVG 이름공간이라 자원을 내려받지 않는다)
+          OUTSIDE=$(grep -Eo 'https?://[^ "<>)]+' "$FILE" | grep -v 'www.w3.org' | sort -u || true)
+          if [ -n "$OUTSIDE" ]; then
+            echo "::error::바깥 자원을 참조합니다. 오프라인에서 열리지 않습니다."
+            echo "$OUTSIDE"
+            exit 1
+          fi
+
+          echo "✅ 점검 통과"
