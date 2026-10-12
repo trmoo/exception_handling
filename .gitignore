@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.log
+.claude/
+# 교안·학습지 원본은 저작권상 올리지 않는다
+*.pdf
+*.hwp
+*.hwpx
+*.pptx
+*.docx

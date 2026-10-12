@@ -1,0 +1,906 @@
+{
+ "python": "3.12.3",
+ "cases": [
+  {
+   "name": "기본 try·except",
+   "output": "잡았다\n끝",
+   "error": null
+  },
+  {
+   "name": "예외 없을 때 else",
+   "output": "B 7\nC",
+   "error": null
+  },
+  {
+   "name": "잡히지 않는 예외 + finally",
+   "output": "시작\n마지막",
+   "error": {
+    "type": "TypeError",
+    "msg": "int() argument must be a string, a bytes-like object or a real number, not 'NoneType'",
+    "line": 3
+   }
+  },
+  {
+   "name": "as e 와 str(e)",
+   "output": "'b'\n'b'\nKeyError('b')\n('b',)\nKeyError",
+   "error": null
+  },
+  {
+   "name": "족보 LookupError",
+   "output": "IndexError list index out of range\nKeyError 'k'",
+   "error": null
+  },
+  {
+   "name": "ArithmeticError 가 ZeroDivision 잡기",
+   "output": "계산 integer division or modulo by zero\n모두 division by zero\ninteger modulo by zero",
+   "error": null
+  },
+  {
+   "name": "여러 개 괄호로",
+   "output": "10\n막음: ValueError\n막음: ZeroDivisionError",
+   "error": null
+  },
+  {
+   "name": "처음 맞는 하나만",
+   "output": "넓은 것",
+   "error": null
+  },
+  {
+   "name": "raise 와 메시지",
+   "output": "오류: 1 이상이어야 해요",
+   "error": null
+  },
+  {
+   "name": "raise 클래스만",
+   "output": "[] ()",
+   "error": null
+  },
+  {
+   "name": "나만의 예외",
+   "output": "큰품절 콜라 없음 True True",
+   "error": null
+  },
+  {
+   "name": "except 안에서 다시 raise",
+   "output": "안쪽\n바깥 invalid literal for int() with base 10: 'x'",
+   "error": null
+  },
+  {
+   "name": "finally 는 return 보다 늦게",
+   "output": "finally 먼저\ntry",
+   "error": null
+  },
+  {
+   "name": "함수 안 예외의 줄",
+   "output": "2",
+   "error": {
+    "type": "ZeroDivisionError",
+    "msg": "integer division or modulo by zero",
+    "line": 2
+   }
+  },
+  {
+   "name": "잡지 않은 KeyError",
+   "output": "",
+   "error": {
+    "type": "KeyError",
+    "msg": "'happy'",
+    "line": 2
+   }
+  },
+  {
+   "name": "TypeError 문구 int - str",
+   "output": "",
+   "error": {
+    "type": "TypeError",
+    "msg": "unsupported operand type(s) for -: 'int' and 'str'",
+    "line": 1
+   }
+  },
+  {
+   "name": "TypeError 문구 str + int",
+   "output": "",
+   "error": {
+    "type": "TypeError",
+    "msg": "can only concatenate str (not \"int\") to str",
+    "line": 1
+   }
+  },
+  {
+   "name": "TypeError 비교",
+   "output": "",
+   "error": {
+    "type": "TypeError",
+    "msg": "'<' not supported between instances of 'int' and 'str'",
+    "line": 1
+   }
+  },
+  {
+   "name": "IndexError 문자열",
+   "output": "",
+   "error": {
+    "type": "IndexError",
+    "msg": "string index out of range",
+    "line": 1
+   }
+  },
+  {
+   "name": "NameError",
+   "output": "",
+   "error": {
+    "type": "NameError",
+    "msg": "name '돈' is not defined",
+    "line": 1
+   }
+  },
+  {
+   "name": "예외 이름 오타는 예외가 날 때 터진다",
+   "output": "괜찮음",
+   "error": {
+    "type": "NameError",
+    "msg": "name 'valueError' is not defined",
+    "line": 7
+   }
+  },
+  {
+   "name": "큰 수",
+   "output": "99999999999999998799 14285714285714285714 1 -14285714285714285715\n1180591620717411303424 100000000000000000001",
+   "error": null
+  },
+  {
+   "name": "큰 정수 글자",
+   "output": "99999999999999998799 299999999999999999997",
+   "error": null
+  },
+  {
+   "name": "except 아래 pass 만",
+   "output": "ok",
+   "error": null
+  },
+  {
+   "name": "int 변환 여러 꼴",
+   "output": "12\n1000\n-5\n7\n12\ninvalid literal for int() with base 10: '1.5'\ninvalid literal for int() with base 10: ''\ninvalid literal for int() with base 10: '2,000'\ninvalid literal for int() with base 10: '1e3'\ninvalid literal for int() with base 10: '12a'",
+   "error": null
+  },
+  {
+   "name": "float 변환",
+   "output": "1.5 2.0 1000.0 inf\ncould not convert string to float: 'abc'",
+   "error": null
+  },
+  {
+   "name": "음수 인덱스는 예외가 아니다",
+   "output": "생수 생수\n-600",
+   "error": null
+  },
+  {
+   "name": "try 안 변수가 없을 때 NameError",
+   "output": "숫자만",
+   "error": {
+    "type": "NameError",
+    "msg": "name '돈' is not defined",
+    "line": 5
+   }
+  },
+  {
+   "name": "except 뒤 예외 객체 사라짐",
+   "output": "",
+   "error": {
+    "type": "NameError",
+    "msg": "name 'e' is not defined",
+    "line": 5
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 돈에 「천원」",
+   "output": "",
+   "error": {
+    "type": "ValueError",
+    "msg": "invalid literal for int() with base 10: '천원'",
+    "line": 6
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 돈에 「2,000」 (쉼표)",
+   "output": "",
+   "error": {
+    "type": "ValueError",
+    "msg": "invalid literal for int() with base 10: '2,000'",
+    "line": 6
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 돈 칸을 비움",
+   "output": "",
+   "error": {
+    "type": "ValueError",
+    "msg": "invalid literal for int() with base 10: ''",
+    "line": 6
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 번호에 「칠」",
+   "output": "",
+   "error": {
+    "type": "ValueError",
+    "msg": "invalid literal for int() with base 10: '칠'",
+    "line": 7
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 번호 7",
+   "output": "",
+   "error": {
+    "type": "IndexError",
+    "msg": "list index out of range",
+    "line": 8
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 번호 100",
+   "output": "",
+   "error": {
+    "type": "IndexError",
+    "msg": "list index out of range",
+    "line": 8
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 쿠폰 「happy」 (소문자)",
+   "output": "",
+   "error": {
+    "type": "KeyError",
+    "msg": "'happy'",
+    "line": 13
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 없는 쿠폰 「BONUS」",
+   "output": "",
+   "error": {
+    "type": "KeyError",
+    "msg": "'BONUS'",
+    "line": 13
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 쿠폰 「FREE」",
+   "output": "",
+   "error": {
+    "type": "TypeError",
+    "msg": "unsupported operand type(s) for -: 'int' and 'str'",
+    "line": 13
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 사람 수 0",
+   "output": "",
+   "error": {
+    "type": "ZeroDivisionError",
+    "msg": "integer division or modulo by zero",
+    "line": 16
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 사람 수에 「둘」",
+   "output": "",
+   "error": {
+    "type": "ValueError",
+    "msg": "invalid literal for int() with base 10: '둘'",
+    "line": 15
+   }
+  },
+  {
+   "name": "1라운드 자판기 · 번호 0 (숨은 함정)",
+   "output": "생수 나왔습니다! 🥤\n거스름돈: 1400 원",
+   "error": null
+  },
+  {
+   "name": "1라운드 자판기 · 사람 수 -2 (숨은 함정)",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 2600 원",
+   "error": null
+  },
+  {
+   "name": "1라운드 자판기 · 콜라 사기",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 800 원",
+   "error": null
+  },
+  {
+   "name": "1라운드 자판기 · 우유 + HAPPY 쿠폰",
+   "output": "우유 나왔습니다! 🥤\n거스름돈: 400 원",
+   "error": null
+  },
+  {
+   "name": "1라운드 자판기 · 커피를 둘이 나눠 내기",
+   "output": "커피 나왔습니다! 🥤\n거스름돈: 2500 원",
+   "error": null
+  },
+  {
+   "name": "1라운드 자판기 · 돈이 모자란 손님",
+   "output": "돈이 모자라요! 한 명당 1000 원이에요.",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 돈에 「천원」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 돈에 「2,000」 (쉼표)",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 돈 칸을 비움",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 번호에 「칠」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 번호 7",
+   "output": "",
+   "error": {
+    "type": "IndexError",
+    "msg": "list index out of range",
+    "line": 9
+   }
+  },
+  {
+   "name": "m1 답 · 번호 100",
+   "output": "",
+   "error": {
+    "type": "IndexError",
+    "msg": "list index out of range",
+    "line": 9
+   }
+  },
+  {
+   "name": "m1 답 · 쿠폰 「happy」 (소문자)",
+   "output": "",
+   "error": {
+    "type": "KeyError",
+    "msg": "'happy'",
+    "line": 14
+   }
+  },
+  {
+   "name": "m1 답 · 없는 쿠폰 「BONUS」",
+   "output": "",
+   "error": {
+    "type": "KeyError",
+    "msg": "'BONUS'",
+    "line": 14
+   }
+  },
+  {
+   "name": "m1 답 · 쿠폰 「FREE」",
+   "output": "",
+   "error": {
+    "type": "TypeError",
+    "msg": "unsupported operand type(s) for -: 'int' and 'str'",
+    "line": 14
+   }
+  },
+  {
+   "name": "m1 답 · 사람 수 0",
+   "output": "",
+   "error": {
+    "type": "ZeroDivisionError",
+    "msg": "integer division or modulo by zero",
+    "line": 17
+   }
+  },
+  {
+   "name": "m1 답 · 사람 수에 「둘」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 번호 0 (숨은 함정)",
+   "output": "생수 나왔습니다! 🥤\n거스름돈: 1400 원",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 사람 수 -2 (숨은 함정)",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 2600 원",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 콜라 사기",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 800 원",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 우유 + HAPPY 쿠폰",
+   "output": "우유 나왔습니다! 🥤\n거스름돈: 400 원",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 커피를 둘이 나눠 내기",
+   "output": "커피 나왔습니다! 🥤\n거스름돈: 2500 원",
+   "error": null
+  },
+  {
+   "name": "m1 답 · 돈이 모자란 손님",
+   "output": "돈이 모자라요! 한 명당 1000 원이에요.",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 돈에 「천원」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 돈에 「2,000」 (쉼표)",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 돈 칸을 비움",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 번호에 「칠」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 번호 7",
+   "output": "그런 번호의 상품은 없어요 🙅",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 번호 100",
+   "output": "그런 번호의 상품은 없어요 🙅",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 쿠폰 「happy」 (소문자)",
+   "output": "없는 쿠폰이에요 🎟️",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 없는 쿠폰 「BONUS」",
+   "output": "없는 쿠폰이에요 🎟️",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 쿠폰 「FREE」",
+   "output": "이 쿠폰은 지금 쓸 수 없어요 🛠️",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 사람 수 0",
+   "output": "0명은 나눠 낼 수 없어요 🤔",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 사람 수에 「둘」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 번호 0 (숨은 함정)",
+   "output": "생수 나왔습니다! 🥤\n거스름돈: 1400 원",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 사람 수 -2 (숨은 함정)",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 2600 원",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 콜라 사기",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 800 원",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 우유 + HAPPY 쿠폰",
+   "output": "우유 나왔습니다! 🥤\n거스름돈: 400 원",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 커피를 둘이 나눠 내기",
+   "output": "커피 나왔습니다! 🥤\n거스름돈: 2500 원",
+   "error": null
+  },
+  {
+   "name": "m2 답 · 돈이 모자란 손님",
+   "output": "돈이 모자라요! 한 명당 1000 원이에요.",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 돈에 「천원」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 돈에 「2,000」 (쉼표)",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 돈 칸을 비움",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 번호에 「칠」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 번호 7",
+   "output": "그런 번호의 상품은 없어요 🙅",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 번호 100",
+   "output": "그런 번호의 상품은 없어요 🙅",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 쿠폰 「happy」 (소문자)",
+   "output": "없는 쿠폰이에요 🎟️ 'happy'",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 없는 쿠폰 「BONUS」",
+   "output": "없는 쿠폰이에요 🎟️ 'BONUS'",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 쿠폰 「FREE」",
+   "output": "이 쿠폰은 지금 쓸 수 없어요 🛠️",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 사람 수 0",
+   "output": "0명은 나눠 낼 수 없어요 🤔",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 사람 수에 「둘」",
+   "output": "숫자만 넣어주세요 😊",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 번호 0 (숨은 함정)",
+   "output": "생수 나왔습니다! 🥤\n거스름돈: 1400 원",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 사람 수 -2 (숨은 함정)",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 2600 원",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 콜라 사기",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 800 원",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 우유 + HAPPY 쿠폰",
+   "output": "우유 나왔습니다! 🥤\n거스름돈: 400 원",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 커피를 둘이 나눠 내기",
+   "output": "커피 나왔습니다! 🥤\n거스름돈: 2500 원",
+   "error": null
+  },
+  {
+   "name": "m3 답 · 돈이 모자란 손님",
+   "output": "돈이 모자라요! 한 명당 1000 원이에요.",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 돈에 「천원」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 돈에 「2,000」 (쉼표)",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 돈 칸을 비움",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 번호에 「칠」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 번호 7",
+   "output": "그런 번호의 상품은 없어요 🙅\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 번호 100",
+   "output": "그런 번호의 상품은 없어요 🙅\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 쿠폰 「happy」 (소문자)",
+   "output": "없는 쿠폰이에요 🎟️ 'happy'\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 없는 쿠폰 「BONUS」",
+   "output": "없는 쿠폰이에요 🎟️ 'BONUS'\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 쿠폰 「FREE」",
+   "output": "이 쿠폰은 지금 쓸 수 없어요 🛠️\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 사람 수 0",
+   "output": "0명은 나눠 낼 수 없어요 🤔\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 사람 수에 「둘」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 번호 0 (숨은 함정)",
+   "output": "생수 나왔습니다! 🥤\n거스름돈: 1400 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 사람 수 -2 (숨은 함정)",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 2600 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 콜라 사기",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 800 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 우유 + HAPPY 쿠폰",
+   "output": "우유 나왔습니다! 🥤\n거스름돈: 400 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 커피를 둘이 나눠 내기",
+   "output": "커피 나왔습니다! 🥤\n거스름돈: 2500 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m4 답 · 돈이 모자란 손님",
+   "output": "돈이 모자라요! 한 명당 1000 원이에요.\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 돈에 「천원」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 돈에 「2,000」 (쉼표)",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 돈 칸을 비움",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 번호에 「칠」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 번호 7",
+   "output": "🙅 1~6번 중에서 골라 주세요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 번호 100",
+   "output": "🙅 1~6번 중에서 골라 주세요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 쿠폰 「happy」 (소문자)",
+   "output": "없는 쿠폰이에요 🎟️ 'happy'\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 없는 쿠폰 「BONUS」",
+   "output": "없는 쿠폰이에요 🎟️ 'BONUS'\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 쿠폰 「FREE」",
+   "output": "이 쿠폰은 지금 쓸 수 없어요 🛠️\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 사람 수 0",
+   "output": "🙅 사람 수는 1명 이상이어야 해요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 사람 수에 「둘」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 번호 0 (숨은 함정)",
+   "output": "🙅 1~6번 중에서 골라 주세요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 사람 수 -2 (숨은 함정)",
+   "output": "🙅 사람 수는 1명 이상이어야 해요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 콜라 사기",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 800 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 우유 + HAPPY 쿠폰",
+   "output": "우유 나왔습니다! 🥤\n거스름돈: 400 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 커피를 둘이 나눠 내기",
+   "output": "커피 나왔습니다! 🥤\n거스름돈: 2500 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m5 답 · 돈이 모자란 손님",
+   "output": "돈이 모자라요! 한 명당 1000 원이에요.\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 돈에 「천원」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 돈에 「2,000」 (쉼표)",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 돈 칸을 비움",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 번호에 「칠」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 번호 7",
+   "output": "🙅 1~6번 중에서 골라 주세요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 번호 100",
+   "output": "🙅 1~6번 중에서 골라 주세요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 쿠폰 「happy」 (소문자)",
+   "output": "없는 쿠폰이에요 🎟️ 'happy'\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 없는 쿠폰 「BONUS」",
+   "output": "없는 쿠폰이에요 🎟️ 'BONUS'\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 쿠폰 「FREE」",
+   "output": "이 쿠폰은 지금 쓸 수 없어요 🛠️\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 사람 수 0",
+   "output": "🙅 사람 수는 1명 이상이어야 해요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 사람 수에 「둘」",
+   "output": "숫자만 넣어주세요 😊\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 번호 0 (숨은 함정)",
+   "output": "🙅 1~6번 중에서 골라 주세요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 사람 수 -2 (숨은 함정)",
+   "output": "🙅 사람 수는 1명 이상이어야 해요\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 콜라 사기",
+   "output": "콜라 나왔습니다! 🥤\n거스름돈: 800 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 우유 + HAPPY 쿠폰",
+   "output": "우유 나왔습니다! 🥤\n거스름돈: 400 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 커피를 둘이 나눠 내기",
+   "output": "커피 나왔습니다! 🥤\n거스름돈: 2500 원\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "m6 답 · 돈이 모자란 손님",
+   "output": "돈이 모자라요! 한 명당 1000 원이에요.\n이용해 주셔서 감사합니다 🙇",
+   "error": null
+  },
+  {
+   "name": "흐름 · 예외가 안 날 때",
+   "output": "① try 시작\n② 바꾸기 성공: 7\n④ 예외 없이 끝남\n⑤ 언제나 실행\n⑥ 다음 줄로",
+   "error": null
+  },
+  {
+   "name": "흐름 · ValueError 가 날 때",
+   "output": "① try 시작\n③ 숫자가 아니에요\n⑤ 언제나 실행\n⑥ 다음 줄로",
+   "error": null
+  },
+  {
+   "name": "흐름 · 못 잡는 예외가 날 때",
+   "output": "① try 시작\n⑤ 언제나 실행",
+   "error": {
+    "type": "TypeError",
+    "msg": "int() argument must be a string, a bytes-like object or a real number, not 'NoneType'",
+    "line": 4
+   }
+  },
+  {
+   "name": "확인 문제 1",
+   "output": "A\nC",
+   "error": null
+  },
+  {
+   "name": "확인 문제 2",
+   "output": "B\nC",
+   "error": null
+  },
+  {
+   "name": "확인 문제 3",
+   "output": "1\n3\n5",
+   "error": null
+  },
+  {
+   "name": "확인 문제 4",
+   "output": "찾기",
+   "error": null
+  },
+  {
+   "name": "확인 문제 5",
+   "output": "오류: 0은 안 돼요",
+   "error": null
+  },
+  {
+   "name": "확인 문제 6",
+   "output": "가",
+   "error": null
+  }
+ ]
+}

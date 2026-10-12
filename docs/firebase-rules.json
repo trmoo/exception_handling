@@ -1,0 +1,42 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      "$room": {
+        ".read": "$room.matches(/^[A-Z0-9]{4,6}$/)",
+        ".write": "$room.matches(/^[A-Z0-9]{4,6}$/) && (!newData.exists() || newData.hasChild('meta'))",
+        "meta": {
+          ".validate": "newData.hasChildren(['groups'])",
+          "groups": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 12" },
+          "phase": { ".validate": "newData.isNumber() && (newData.val() === 1 || newData.val() === 2)" },
+          "created": { ".validate": "newData.isNumber()" },
+          "$other": { ".validate": false }
+        },
+        "players": {
+          "$pid": {
+            ".validate": "$pid.matches(/^[a-z0-9]{6,20}$/) && newData.hasChildren(['g'])",
+            "g": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 12" },
+            "f": { "$card": { ".validate": "$card.matches(/^[A-Za-z]{4,20}$/) && newData.isNumber()" } },
+            "m": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 6" },
+            "b": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 13" },
+            "s": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 3" },
+            "t": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+        "feed": {
+          "$id": {
+            ".validate": "newData.hasChildren(['g', 'k', 'x', 't'])",
+            "g": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 12" },
+            "k": { ".validate": "newData.isString() && newData.val().matches(/^(found|mission|boss)$/)" },
+            "x": { ".validate": "newData.isString() && newData.val().length <= 20" },
+            "t": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}
