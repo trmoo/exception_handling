@@ -8,6 +8,7 @@
 같은 공격을 다시 넣었을 때 자판기가 「숫자만 넣어주세요 😊」 라고 침착하게 대답하게 만듭니다.
 반 전체의 발견과 방어는 **교실 TV 리더보드**에 실시간으로 뜹니다.
 
+- **주소: https://exception-handling.enssam21.workers.dev** (Cloudflare Workers)
 - 대상: 고등학교 「프로그래밍」(파이썬) — 예외 처리 단원, **2차시**
 - 파이썬 설치·인터넷 없이 브라우저에서 진짜로 실행됩니다 (리더보드만 인터넷 필요)
 - 이름·학번을 받지 않습니다
@@ -57,6 +58,12 @@
 - 무료 요금제는 **동시 접속 100개**까지입니다. 한 반(30명 + TV)은 넉넉합니다.
 - API 키나 SDK 는 쓰지 않습니다. 앱은 주소로 REST 요청과 EventSource 만 보냅니다(바깥 라이브러리 0개).
 - 인터넷이 끊기면 상단 칩이 🟠 로 바뀌고, 학생 활동은 그대로 계속됩니다.
+
+## 배포 (Cloudflare Workers)
+
+GitHub `main` 에 올리면 Cloudflare 가 스스로 `npm run build` → `npx wrangler deploy` 를 돌려
+`dist/` 를 정적 파일로 올린다. 설정은 [`wrangler.jsonc`](wrangler.jsonc) 하나(서버 코드 없음).
+GitHub Actions 의 `check` 워크플로는 시험·소스 검사·빌드 점검만 한다(배포하지 않는다).
 
 ## 개발
 
