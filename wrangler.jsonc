@@ -1,0 +1,11 @@
+// 부숴봐! 자판기 — © 2026 티쳐무 · 모든 권리 보유
+// Cloudflare Workers 배포 설정. 서버 코드 없이 빌드 결과(dist/index.html)만 정적 파일로 내보낸다.
+// Cloudflare 가 GitHub 푸시마다 `npm run build` → `npx wrangler deploy` 를 돌린다.
+// ⚠ name 은 Cloudflare 화면의 Project name 과 같아야 한다.
+{
+  "name": "exception-handling",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
