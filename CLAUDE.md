@@ -29,17 +29,28 @@
 - **📘 정리** — try 흐름 따라가기 3가지(해석기로 실제 실행), 좋은/아쉬운 방어막 3쌍, 확인 문제 7개,
   선생님용 2차시 수업 흐름, 내 기록 지우기.
 
-## ③ 개발 상태 (2026-10-08 첫 완성)
+## ③ 개발 상태 (2026-10-08 첫 완성 · 2026-10-12 Cloudflare 배포)
 - Vite + 바닐라 JS, 외부 라이브러리 0개. `dist/index.html` 한 파일(약 170KB)로 더블클릭 실행.
 - 점검: `npm test` **491가지**, `npm run check:syntax`(소스 28개).
-- 저장소·Pages **아직 없음** (만들지 여부를 사용자에게 물어볼 것).
-- Firebase 는 **가짜 서버(`tools/mock-firebase.mjs`)로만 시험**했다. 진짜 Firebase 로는 아직 안 돌려 봤다
-  — 선생님이 데이터베이스를 만들면 README 「실시간 리더보드 설정」 대로 연결해 확인할 것.
+- 저장소: https://github.com/trmoo/exception_handling (공개, 2026-10-12)
+- **배포: Cloudflare Workers** — https://exception-handling.enssam21.workers.dev
+  (우리 앱 가운데 **처음으로 GitHub Pages 가 아니라 Cloudflare** 로 올렸다. 사용자가 해 보고 싶어 함)
+  - Cloudflare 가 GitHub 저장소와 연결되어 `main` 푸시마다 `npm run build` → `npx wrangler deploy`.
+    설정은 `wrangler.jsonc`(이름 `exception-handling` · `assets.directory: ./dist`). Node 는 `.nvmrc`(22).
+  - ⚠ Cloudflare 새 프로젝트 화면은 **Pages 가 아니라 Workers** 로 열린다. Workers 는 `wrangler.jsonc` 가
+    없으면 deploy 단계에서 실패한다 — `npx wrangler@4 deploy --dry-run` 으로 미리 확인할 수 있다.
+  - ⚠ `wrangler.jsonc` 의 `name` 은 Cloudflare 화면의 Project name 과 같아야 한다.
+  - 주소의 `enssam21` 은 Cloudflare 계정의 workers.dev 하위 이름이다(짐작으로 맞히지 말고 대시보드에서 볼 것).
+  - GitHub Actions 는 `check.yml`(시험·소스 검사·빌드 점검)만 — GitHub Pages 로는 올리지 않는다.
+  - 배포본 MD5 가 로컬 `dist/index.html` 과 같은 것을 확인했다(163,131바이트, `6b8387d4…`).
+- **Firebase**: 프로젝트 `exception-handling-b4dd2`, Realtime Database 싱가포르
+  (`https://exception-handling-b4dd2-default-rtdb.asia-southeast1.firebasedatabase.app`).
+  `docs/firebase-rules.json` 이 게시되어 있다(방 자리 200 · 바깥 401 확인).
+  **배포 주소에서 진짜 Firebase 로 선생님 → TV → 학생 흐름을 확인했다**(2026-10-12, 시험용 방은 지웠다).
 
 ### 다음 할 일
-- 진짜 Firebase 로 리허설(학생 기기 2~3대 + TV).
-- 저장소를 만들면 `.github/workflows/deploy.yml` 이 이미 준비되어 있다 — 빈 저장소를 만들 때
-  **Settings → Pages → Source 를 「GitHub Actions」 로 먼저** 켤 것(루트 CLAUDE.md 의 브랜치 배포 함정).
+- 교실 컴퓨터·학생 기기에서 `workers.dev` 주소가 학교망에 막히지 않는지 확인.
+- 학생 주소가 길다(`?room=…&db=…`) — 서버 주소를 코드에 기본값으로 넣으면 짧은 주소 + 방 코드만으로 들어올 수 있다.
 
 ## 구조
 ```
