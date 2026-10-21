@@ -9,3 +9,6 @@ dist/
 *.pptx
 *.docx
 .wrangler/
+
+# 개발 기록은 로컬에만 둔다 — 깃허브에 올리지 않는다
+CLAUDE.md
