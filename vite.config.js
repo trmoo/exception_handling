@@ -21,6 +21,6 @@ export default defineConfig({
     target: 'es2020',
     cssCodeSplit: false,
     assetsInlineLimit: 100000000,
-    rollupOptions: { output: { banner: 배너 } },
+    rollupOptions: { output: { postBanner: 배너 } },   // ⚠ Vite 8 에서 banner 는 압축에서 지워진다 — postBanner 는 압축 뒤에 붙는다
   },
 });

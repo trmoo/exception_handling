@@ -56,7 +56,8 @@ jobs:
           fi
 
           # /*! 배너가 압축에서 살아남았는지
-          grep -q '/\*!' "$FILE" || { echo "::error::/*! 배너가 지워졌습니다"; exit 1; }
+          # ⚠ /*! 만 보면 CSS 머리 주석에 걸려 늘 통과한다 — 배너 둘째 줄로 본다(Vite 8 은 output.banner 를 압축에서 지운다. postBanner 를 쓸 것)
+          grep -qF ' * 학교 수업 목적으로만 이용해 주세요. 무단 배포·상업적 이용을 금합니다. */' "$FILE" || { echo "::error::스크립트 /*! 배너가 지워졌습니다 (vite.config.js 의 output.postBanner 확인)"; exit 1; }
 
           # 화면 푸터가 살아 있는지 (학생·교사가 실제로 보는 곳)
           grep -q '학교 수업 목적으로만' "$FILE" || { echo "::error::화면 푸터가 없습니다"; exit 1; }
